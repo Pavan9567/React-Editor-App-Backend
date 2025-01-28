@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { exec } = require('child_process');
 const cors = require('cors');
-const path = require("path");
 
 const app = express();
 const PORT = 5000;
@@ -11,7 +10,7 @@ const PORT = 5000;
 app.use(cors());
 app.use(bodyParser.json());
 
-const FRONTEND_PATH = path.join(__dirname, "../frontend/editor-frontend");
+const FRONTEND_PATH = "https://react-editor-app.vercel.app/"
 
 // API Endpoint to Install Packages
 app.post('/install', (req, res) => {
