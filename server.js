@@ -2,6 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { exec } = require('child_process');
 const cors = require('cors');
+const path = require("path");
+
+const FRONTEND_PATH = path.join(__dirname, "../frontend/editor-frontend");
 
 const app = express();
 const PORT = 5000;
@@ -19,7 +22,7 @@ app.post('/install', (req, res) => {
     }
 
     // Run npm install
-    exec(`npm install ${packageName}`, (error, stdout, stderr) => {
+    exec(`npm install ${packageName}`,  { cwd: FRONTEND_PATH }, (error, stdout, stderr) => {
         if (error) {
             console.error(`Error: ${stderr}`);
             return res.status(500).json({ error: stderr });
